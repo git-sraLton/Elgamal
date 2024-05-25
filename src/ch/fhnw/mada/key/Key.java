@@ -1,6 +1,7 @@
 package ch.fhnw.mada.key;
 
 import java.math.BigInteger;
+import java.util.Random;
 
 public class Key {
     private BigInteger group;
@@ -11,6 +12,11 @@ public class Key {
         this.group = group;
         this.generator = generator;
         this.number = number;
+    }
+
+    public static BigInteger randomNumberFromGroup(BigInteger group) {
+        Random rnd = new Random();
+        return new BigInteger(group.subtract(new BigInteger("1")).bitLength(), rnd);
     }
 
     public BigInteger getGroup() {

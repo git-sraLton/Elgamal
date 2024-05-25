@@ -8,8 +8,7 @@ public class KeyPair {
     private Key publicKey;
 
     public KeyPair(BigInteger group, BigInteger generator) {
-        Random rnd = new Random();
-        BigInteger number = new BigInteger(group.subtract(new BigInteger("1")).bitLength(), rnd);
+        BigInteger number = Key.randomNumberFromGroup(group);
         this.privateKey = new Key(group, generator, number);
         this.publicKey = new Key(group, generator, generator.modPow(number, group));
     }
