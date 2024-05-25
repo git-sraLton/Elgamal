@@ -16,7 +16,14 @@ public class Main {
 
 //        generateKeys(group, g);
 //        encryptMessage(group, g);
-//        decryptMessage(group, g);
+        decryptMessage(group, g);
+//        decryptGivenMessage(group, g);
+    }
+
+    private static void decryptGivenMessage(BigInteger group, BigInteger g) {
+        Key privateKey = new Key(group, g, new BigInteger(FileManager.readFile("data/aufgabe5/sk.txt")));
+        String result = Crypt.decryptText(FileManager.readFile("data/aufgabe5/chiffre.txt"), privateKey);
+        FileManager.writeFile("data/aufgabe5/text-d.txt", result);
     }
 
     // Aufgabe 4: decrypt a text from chiffre.txt and private key from sk.txt and write the result in text-d.txt
